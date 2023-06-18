@@ -8,6 +8,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { StrategyModule } from './strategy/strategy.module';
 import { PostsModule } from './posts/posts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService, ConfigModule } from '@nestjs/config';
@@ -27,14 +28,15 @@ import { TagModule } from './tag/tag.module';
         host: configService.get('DB_HOST', '127.0.0.0'),
         port: configService.get<number>('DB_PORT', 3306),
         username: configService.get('DB_USER', 'root'),
-        password: configService.get('DB_PASSWORD', 'root'),
-        database: configService.get('DB_DATABASE', 'blog'),
+        password: configService.get('DB_PASSWORD', '123456'),
+        database: configService.get('DB_DATABASE', 'strategy-helpy'),
         // charset: 'utf8mb4',
         timezone: '+08:00',
         synchronize: true,
         autoLoadEntities: true
       }),
     }),
+    StrategyModule,
     PostsModule,
     UserModule,
     AuthModule,

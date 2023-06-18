@@ -30,7 +30,7 @@ export class AppController {
     return this.appService.getHello();
   }
 
- 
+
   @Post('upload')
   @ApiOperation({ summary: '上传文件' })
   @ApiConsumes('multipart/form-data')

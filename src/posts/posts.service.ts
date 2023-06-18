@@ -72,21 +72,6 @@ export class PostsService {
     let posts = await qb.getMany();
     const result: PostInfoDto[] = posts.map((item) => item.toResponseObject());
     return { list: result, count: count };
-
-    //  使用find 方式实现
-    /**
-     const { pageNum = 1, pageSize = 10, ...params } = query;
-    const result = await this.postsRepository.findAndCount({
-      relations: ['category', 'author', "tags"],
-      order: {
-        id: 'DESC',
-      },
-      skip: (pageNum - 1) * pageSize,
-      take: pageSize,
-    });
-    const list = result[0].map((item) => item.toResponseObject());
-    return { list, count: result[1] };
-     */
   }
 
   async findById(id): Promise<any> {

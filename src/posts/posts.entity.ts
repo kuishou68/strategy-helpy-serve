@@ -91,7 +91,7 @@ export class PostsEntity {
   updateTime: Date;
 
   toResponseObject(): PostInfoDto {
-    let responseObj: PostInfoDto = {
+    const responseObj: PostInfoDto = {
       ...this,
       isRecommend: this.isRecommend ? true : false,
     };
