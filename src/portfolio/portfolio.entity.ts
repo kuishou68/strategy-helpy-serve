@@ -1,11 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { StrategyInfoDto } from './dto/strategy.dto';
+import { PortfolioInfoDto } from './dto/portfolio.dto';
 
-@Entity('strategy')
-export class StrategyEntity {
+@Entity('portfolio')
+export class PortfolioEntity {
   @PrimaryGeneratedColumn()
-  // @Column({ type: 'int', name: 'strategy_id' })
-  strategy_id: number; // 标记为主列，值自动生成
+  // @Column({ type: 'int', name: 'portfolio_id' })
+  portfolio_id: number; // 标记为主列，值自动生成
 
   @Column({ length: 50, name: 'data_dt' })
   dataDt: string;
@@ -23,16 +23,13 @@ export class StrategyEntity {
   tradeStatus: string;
 
   @Column({ type: 'tinyint', default: 0, name: 'trade_target_value' })
-  tradeTargetValue: number;
+  tradeTargetValue: string;
 
   @Column({ length: 50, name: 'cur_mkt_weight' })
   curMktWeight: string;
 
   @Column({ length: 50, name: 'is_valid' })
   isValid: string;
-
-  @Column({ length: 50, name: 'traupdate_timede_dt' })
-  traupdateTimedeDt: string;
 
   @Column({ length: 50, name: 'update_time' })
   updateTime: string;
@@ -61,11 +58,14 @@ export class StrategyEntity {
   @Column({ type: 'int', default: 0, name: 'cur_adj_factor' })
   curAdjFactor: number;
 
+  @Column({ type: 'int', default: 0, name: 'cur_adj_shares' })
+  curAdjShares: number;
+
   @Column({ length: 50, name: 'trade_adj_shares' })
   tradeAdjShares: string;
 
-  @Column({ length: 50, name: 'portfolio_id' })
-  portfolioId: string;
+  @Column({ length: 50, name: 'strategy_id' })
+  strategyId: string;
 
   @Column({ type: 'int', default: 0, name: 'trade_priority' })
   tradePriority: number;
@@ -91,8 +91,8 @@ export class StrategyEntity {
   @Column({ length: 50, name: 'block_name2' })
   blockName2: string;
 
-  toResponseObject(): StrategyInfoDto {
-    const responseObj: StrategyInfoDto = {
+  toResponseObject(): PortfolioInfoDto {
+    const responseObj: PortfolioInfoDto = {
       ...this,
       isValid: this.isValid ? true : false
     };
